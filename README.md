@@ -76,7 +76,7 @@ FROM customer
 WHERE id NOT IN (
 SELECT id 
 FROM customer 
-WHERE referee_id = 2)
+WHERE referee_id = 2);
 ```
 Notes
 1. Always remember NULL and double check with it. referee_id != 2 only returns number which exludes NULL. 
@@ -147,7 +147,7 @@ SELECT DISTINCT o.sales_id
 FROM orders o
 JOIN company c
 ON c.com_id = o.com_id
-WHERE c.name LIKE "%RED%")
+WHERE c.name LIKE "%RED%");
 ```  
 
 ## 13.[Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)
@@ -245,7 +245,7 @@ SELECT IFNULL((SELECT DISTINCT Salary
 ```
 Notes:
 1. However, this solution will be judged as 'Wrong Answer' if there is no such second highest salary since there might be only one record in this table. To overcome this issue, we can take this as a temp table.<br/>
-2.  **OFFSET 1** & **IFNULL**
+2. Practice more **OFFSET 1** & **IFNULL**
 
 ## 21.[Rising Temperature](https://leetcode.com/problems/rising-temperature/)
 ???
