@@ -1,5 +1,4 @@
 ## 1.[Product Sales Analysis I](https://leetcode.com/problems/product-sales-analysis-i/)
-#### MySQL Solution
 ```
 SELECT p.product_name, s.year, s.price
 FROM Sales s
@@ -8,7 +7,6 @@ on s.product_id = p.product_id ;
 ```
 
 ## 2.[Product Sales Analysis II](https://leetcode.com/problems/product-sales-analysis-ii/)
-#### MySQL Solution
 ```
 SELECT s.product_id, SUM(s.quantity) AS total_quantity 
 FROM Sales s
@@ -19,7 +17,6 @@ ORDER BY total_quantity DESC;
 ```
 
 ## 3.[Actors and Directors Who Cooperated At Least Three Times](https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/)
-#### My SQL Solution
 ```
 SELECT actor_id, director_id 
 FROM (
@@ -30,7 +27,6 @@ HAVING COUNT(*)>=3 ) A ;
 ```
 
 ## 4.[Big Countries](https://leetcode.com/problems/big-countries/)
-#### My SQL Solution
 ```
 SELECT name, population, area
 FROM World
@@ -40,7 +36,6 @@ ORDER BY name ASC;
 Note: Should be pay more attention to the number
 
 ## 5.[Shortest Distance in a Line](https://leetcode.com/problems/shortest-distance-in-a-line/)
-#### My SQL Solution
 ```
 SELECT min(DISTINCT abs(p1.x- p2.x)) AS shortest
 FROM point p1
@@ -56,7 +51,6 @@ Notes:
    For example, ```SELECT DISTINCT min(abs(p1.x- p2.x)) AS shortest```
 
 ## 6.[Swap Salary](https://leetcode.com/problems/swap-salary/)
-#### My SQL Solution
 ```
 UPDATE salary
 SET sex= CASE sex
@@ -68,8 +62,7 @@ Notes:
 1. Only allows to use UPDATE 
 2. UPDATE [Table] --SET[Column]--[Column]= CASE Column  WHEN....THEN...ELSE...END;
 
-#### 7.[Find Customer Referee](https://leetcode.com/problems/find-customer-referee/)
-#### My SQL Solution
+## 7.[Find Customer Referee](https://leetcode.com/problems/find-customer-referee/)
 #### Solution 1
 ```
 SELECT name 
@@ -90,7 +83,6 @@ Notes
 2. Find a bridge **id**    **id** not in ( select **id** .....)
 
 ## 8.[Not Boring Movies](https://leetcode.com/problems/not-boring-movies/)
-#### My SQL Solution
 ```
 SELECT id, movie, description, rating 
 FROM cinema
@@ -99,7 +91,6 @@ ORDER BY rating DESC;
 ```
 
 ## 9.[Triangle Judgement](https://leetcode.com/problems/triangle-judgement/)
-#### My SQL Solution
 ```
 SELECT x,y,z,
 CASE 
@@ -113,7 +104,6 @@ Notes:
 2. Don't forget the , before CASE
 
 ## 10.[Employee Bonus](https://leetcode.com/problems/employee-bonus/)
-#### My SQL Solution
 ```
 SELECT name,bonus 
 FROM Employee e
@@ -125,7 +115,6 @@ Notes
 1. Always remember NULL and double check with it. b.bonus <1000 only returns number which exludes NULL. 
 
 ## 11.[Consecutive Available Seats](https://leetcode.com/problems/consecutive-available-seats/)
-#### My SQL Solution 
 ```    
 SELECT DISTINCT c1.seat_id
 FROM cinema c1
@@ -141,7 +130,6 @@ Notes:
 4.The consecutive number refers to 2 consecutive numbers. There are only two tables joined.<br/>
 
 ## 12.[Sales Person](https://leetcode.com/problems/sales-person/)
-#### My SQL Solution 
 #### Solution 1
 ```    
 SELECT name 
@@ -163,7 +151,6 @@ WHERE c.name LIKE "%RED%")
 ```  
 
 ## 13.[Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)
-#### My SQL Solution 
 ```  
 SELECT Email 
 FROM Person
@@ -171,7 +158,6 @@ GROUP BY Email
 HAVING COUNT(Email)>1;
 ```  
 ## 14.[Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)
-#### My SQL Solution 
 ```  
 SELECT FirstName, Lastname, City, State 
 FROM Person p
@@ -182,7 +168,6 @@ Note:
 1. Should use **LEFT JOIN** because people may have name but may not have addresses. 
 
 ## 15.[Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)
-#### My SQL Solution 
 #### Solution 1
 ```  
 SELECT e1.Name AS Employee
@@ -201,7 +186,6 @@ Notes:
 1. Looks like append new columns behind of orgirnal columns **e1.ManagerId = e2.Id**
 
 ## 16.[Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)
-#### My SQL Solution 
 #### Solution 1
 ```
 SELECT Name As Customers
@@ -222,7 +206,6 @@ Notes:
 1. Should use the **LEFT JOIN**
 
 ## 17.[Biggest Single Number](https://leetcode.com/problems/biggest-single-number/)
-#### My SQL Solution 
 ```
 SELECT MAX(num) AS num
 FROM (
@@ -233,7 +216,6 @@ HAVING COUNT(num)=1) A ;
 ```
 
 ## 18.[Classes More Than 5 Students](https://leetcode.com/problems/classes-more-than-5-students/)
-#### My SQL Solution 
 ```
 SELECT DISTINCT(class)
 FROM courses
@@ -244,7 +226,6 @@ Notes:
 1. Should include **DISTINCT** 
 
 ## 19.[Delete Duplicate Emails](https://leetcode.com/problems/delete-duplicate-emails/)
-#### My SQL Solution 
 ```
 DELETE p1 
 FROM Person p1, Person p2
@@ -256,7 +237,6 @@ Notes:
 3. Only allows to use **DELETE**
 
 ## 20.[Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)
-#### My SQL Solution 
 ```
 SELECT IFNULL((SELECT DISTINCT Salary
              FROM Employee
