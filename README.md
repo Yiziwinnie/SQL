@@ -246,15 +246,44 @@ SELECT IFNULL((SELECT DISTINCT Salary
 Notes:
 1. However, this solution will be judged as 'Wrong Answer' if there is no such second highest salary since there might be only one record in this table. To overcome this issue, we can take this as a temp table.<br/>
 2. Practice more **OFFSET 1** & **IFNULL**
+3. **DISTINCT**
+
 
 ## 21.[Rising Temperature](https://leetcode.com/problems/rising-temperature/)
 ???
 
+```
+SELECT w2.Id 
+FROM Weather w1, Weather w2
+WHERE datediff(w2.RecordDate,w1.RecordDate) =1 AND w1.Temperature < w2.Temperature;
+```
+Notes:
+1. Pay attention to the order of w1, w2
+2. ** datediff (,) using","instead of using "-" & lower case of datediff(,)
+
 ## 22.[Friend Requests I: Overall Acceptance Rate](https://leetcode.com/problems/friend-requests-i-overall-acceptance-rate/)
 #### My SQL Solution 
 ```
-???
+SELECT ROUND(IFNULL (
+    (SELECT COUNT(*)
+FROM(
+SELECT DISTINCT requester_id, accepter_id
+    FROM request_accepted
+    GROUP BY requester_id, accepter_id) AS A)
+/
+(SELECT COUNT(*)
+FROM(
+SELECT DISTINCT sender_id, send_to_id 
+FROM friend_request
+GROUP BY sender_id, send_to_id) AS B),0),2) AS accept_rate; 
 ```
+Notes:
+1.round & IFNULL: round **(** IFNULL([],0),2 **)** AS accept_rate
+2.DISTINCT!! 
+3.SELECT COUNT() FROM (SELECT DISTINCT xx,xx FROM YY GROUP BY xx,xx) AS **Z**
+4.More practice !!
+
+## 23. [Investments in 2016](https://leetcode.com/problems/investments-in-2016/)
 
 
 
