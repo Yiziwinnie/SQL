@@ -278,12 +278,60 @@ FROM friend_request
 GROUP BY sender_id, send_to_id) AS B),0),2) AS accept_rate; 
 ```
 Notes:
-1.round & IFNULL: round **(** IFNULL([],0),2 **)** AS accept_rate
-2.DISTINCT!! 
-3.SELECT COUNT() FROM (SELECT DISTINCT xx,xx FROM YY GROUP BY xx,xx) AS **Z**
-4.More practice !!
+1. round & IFNULL: round **(** IFNULL([],0),2 **)** AS accept_rate
+2. DISTINCT!! 
+3. SELECT COUNT() FROM **(** SELECT DISTINCT xx,xx FROM YY GROUP BY xx,xx **)** AS **Z**
+4. More practice !!
 
 ## 23. [Investments in 2016](https://leetcode.com/problems/investments-in-2016/)
+```
+SELECT SUM(TIV_2016) AS TIV_2016
+FROM insurance
+WHERE (LAT,LON) IN (
+    SELECT DISTINCT LAT,LON
+    FROM insurance 
+    GROUP BY LAT,LON
+    HAVING COUNT(*)=1)
+AND
+TIV_2015 IN (SELECT TIV_2015             
+            FROM insurance
+            GROUP BY TIV_2015
+            HAVING COUNT(*)>1);
+```            
+Notes:
+1.**SUM()** instead of sum () [without space]
+2.Should not include the unique value of TIV_2015. It means that same value occurs multiple times (using count()>1). I always forgot this part!!
+3. **DISTINCT X,Y** instead of DISTINCT(X,Y)[without bracket]
+4. Should use () in WHERE if there are multiple columns included.
+5. More practice!
 
+##24. [Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
+```
+SELECT product_id, year AS first_year, quantity, price
+FROM Sales
+WHERE (product_id, year) IN (
+SELECT product_id, MIN(year) as year
+FROM Sales
+GROUP BY product_id) ;
+```
+Notes:
+1. Boundle product_id, min(year)
 
-
+##24.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
+```
+SELECT customer_number
+FROM(
+SELECT customer_number,COUNT(*) AS order_number
+FROM orders
+GROUP BY customer_number
+ORDER BY order_number DESC) A 
+LIMIT 1;
+```
+#### Easy solution
+```
+SELECT customer_number
+FROM orders
+GROUP BY customer_number
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+```
