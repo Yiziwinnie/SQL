@@ -281,27 +281,6 @@ Notes:
 3. SELECT COUNT() FROM **(** SELECT DISTINCT xx,xx FROM YY GROUP BY xx,xx **)** AS **Z**
 4. More practice !!
 
-## 23.[Investments in 2016](https://leetcode.com/problems/investments-in-2016/)
-```
-SELECT SUM(TIV_2016) AS TIV_2016
-FROM insurance
-WHERE (LAT,LON) IN (
-    SELECT DISTINCT LAT,LON
-    FROM insurance 
-    GROUP BY LAT,LON
-    HAVING COUNT(*)=1)
-AND
-TIV_2015 IN (SELECT TIV_2015             
-            FROM insurance
-            GROUP BY TIV_2015
-            HAVING COUNT(*)>1);
-```            
-Notes:
-1.**SUM()** instead of sum () [without space]
-2.Should not include the unique value of TIV_2015. It means that same value occurs multiple times (using count()>1). I always forgot this part!!
-3. **DISTINCT X,Y** instead of DISTINCT(X,Y)[without bracket]
-4. Should use () in WHERE if there are multiple columns included.
-5. More practice!
 
 ## 24.[Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
 ```
@@ -315,7 +294,7 @@ GROUP BY product_id) ;
 Notes:
 1. Boundle product_id, min(year)
 
-## 25.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
+## 23.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
 ```
 SELECT customer_number
 FROM(
