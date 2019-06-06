@@ -250,8 +250,6 @@ Notes:
 
 
 ## 21.[Rising Temperature](https://leetcode.com/problems/rising-temperature/)
-???
-
 ```
 SELECT w2.Id 
 FROM Weather w1, Weather w2
@@ -259,7 +257,7 @@ WHERE datediff(w2.RecordDate,w1.RecordDate) =1 AND w1.Temperature < w2.Temperatu
 ```
 Notes:
 1. Pay attention to the order of w1, w2
-2. ** datediff (,) using","instead of using "-" & lower case of datediff(,)
+2. **datediff (,)** using","instead of using "-" & lower case of datediff(,)
 
 ## 22.[Friend Requests I: Overall Acceptance Rate](https://leetcode.com/problems/friend-requests-i-overall-acceptance-rate/)
 #### My SQL Solution 
@@ -283,7 +281,7 @@ Notes:
 3. SELECT COUNT() FROM **(** SELECT DISTINCT xx,xx FROM YY GROUP BY xx,xx **)** AS **Z**
 4. More practice !!
 
-## 23. [Investments in 2016](https://leetcode.com/problems/investments-in-2016/)
+## 23.[Investments in 2016](https://leetcode.com/problems/investments-in-2016/)
 ```
 SELECT SUM(TIV_2016) AS TIV_2016
 FROM insurance
@@ -305,7 +303,7 @@ Notes:
 4. Should use () in WHERE if there are multiple columns included.
 5. More practice!
 
-##24. [Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
+## 24.[Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
 ```
 SELECT product_id, year AS first_year, quantity, price
 FROM Sales
@@ -317,7 +315,7 @@ GROUP BY product_id) ;
 Notes:
 1. Boundle product_id, min(year)
 
-##24.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
+## 25.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
 ```
 SELECT customer_number
 FROM(
