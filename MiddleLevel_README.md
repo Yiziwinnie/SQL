@@ -1,4 +1,5 @@
 ## 1.[Customers Who Bought All Products](https://leetcode.com/problems/customers-who-bought-all-products/)
+#### Solution 1
 ```
 SELECT customer_id
 FROM (
@@ -7,6 +8,16 @@ FROM (
     GROUP BY customer_id ) tmp
 WHERE num_orders= (SELECT COUNT(DISTINCT product_key) FROM Product);
 ```
+#### Solution 2
+```
+SELECT customer_id
+FROM Customer 
+GROUP BY customer_id
+HAVING COUNT(DISTINCT product_key) = (
+SELECT COUNT(DISTINCT product_key)
+FROM Product );
+```
+
 Notes:
 1. Don't forget **DISTINCT product_key**. The table only has two values 5,6, however, we should get rid of possible duplicate values in product table. 
 
@@ -75,6 +86,61 @@ WHERE followee IN
 GROUP BY 1
 ORDER BY followee;
 ``` 
+## 7.[Tree Node](https://leetcode.com/problems/tree-node/)
+```
+SELECT id, 'Root' AS Type
+FROM tree
+WHERE p_id IS NULL
+UNION 
+SELECT id, 'Inner' AS Type
+FROM tree
+WHERE id IN (
+    SELECT p_id 
+    FROM tree
+    GROUP BY p_id
+    HAVING p_id IS NOT NULL)
+AND p_id IS NOT NULL
+UNION 
+SELECT id, 'Leaf' AS Type
+FROM tree
+WHERE id NOT IN (
+    SELECT p_id
+    FROM tree
+    GROUP BY p_id
+    HAVING p_id IS NOT NULL)
+AND p_id IS NOT NULL;
+```
+Notes:
+1. Always pay more attention to NULL. For example, We need include **HAVING p_id IS NOT NULL** to only get numbers 
+2. HAVING is kind of similar to WHERE. So We can use HAVING with condition which is not limited to COUNT().
+
+## 8.[Shortest Distance in a Plane](https://leetcode.com/problems/shortest-distance-in-a-plane/)
+```
+SELECT ROUND (SQRT(MIN(POW(p1.x- p2.x, 2) + POW(p1.y-p2.y,2))),2) AS shortest
+FROM point_2d p1
+JOIN point_2d p2
+ON p1.x != p2.x OR p1.y != p2.y
+```
+Notes:
+1. [POW(x, y) x:the base y:the exponent](https://www.w3schools.com/sql/func_mysql_pow.asp)
+2. ?? Concern about why did I use **OR** (returns 1.4 when I used **AND**)
+
+## 9.[Friend Requests II: Who Has the Most Friends](https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends/)
+```
+SELECT ids AS id, COUNT(ids) AS num
+FROM(
+    SELECT requester_id AS ids
+    FROM request_accepted 
+
+UNION ALL
+    SELECT accepter_id AS ids
+    FROM request_accepted ) a
+GROUP BY ids
+ORDER BY num DESC
+Limit 1;
+```
 
 ## ??.[Exchange Seats](https://leetcode.com/problems/exchange-seats/)
-???
+```
+SELECT id, iif(id%2!=0, lead(student,1,student) over (ORDER BY id), lag(student,1) over (ORDER BY id)) as student FROM seat;
+```
