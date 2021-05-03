@@ -340,3 +340,76 @@ GROUP BY customer_number
 ORDER BY COUNT(*) DESC
 LIMIT 1;
 ```
+
+
+## 25.[Fix Names in a Table](https://leetcode.com/problems/fix-names-in-a-table/)
+
+```
+SELECT user_id, CONCAT(UPPER(LEFT(name,1)), LOWER(SUBSTRING(name, 2))) AS name
+FROM Users
+ORDER BY user_id ASC
+```
+
+## 26.[Patients With a Condition](https://leetcode.com/problems/patients-with-a-condition/)
+```
+SELECT *
+FROM patients
+where conditions LIKE "%DIAB1%";
+```
+
+
+## 27.[Product's Worth Over Invoices](https://leetcode.com/problems/products-worth-over-invoices/)
+```
+SELECT p.name, i.rest, i.paid, i.canceled, i.refunded 
+FROM Product p
+LEFT JOIN 
+(SELECT product_id, SUM(rest) AS rest, SUM(paid) AS paid, SUM(canceled) AS canceled, SUM(refunded) as refunded
+FROM Invoice
+GROUP BY product_id) i
+ON p.product_id =i.product_id
+ORDER BY P.name ASC;
+```
+
+```
+SELECT p.name, SUM(rest) AS rest, SUM(paid) AS paid, SUM(canceled) AS canceled,
+SUM(refunded) AS refunded 
+FROM Invoice i
+LEFT JOIN Product p
+ON i.product_id = p.product_id
+GROUP BY i.product_id
+ORDER BY p.name ASC;
+```
+
+
+## 28.[Project Employees I](https://leetcode.com/problems/project-employees-i/)
+
+```
+SELECT p.project_id, ROUND(AVG(e.experience_years),2) AS average_years
+FROM Project p
+LEFT JOIN Employee e
+ON p.employee_id = e.employee_id
+GROUP BY p.project_id;
+```
+
+```
+SELECT product_name, sale_date, COUNT(sale_id) AS total
+FROM(
+    SELECT TRIM(LOWER(product_name)) AS product_name, 
+           DATE_FORMAT(sale_date,'%Y-%m') AS sale_date, 
+           sale_id
+    FROM Sales) A
+GROUP BY product_name, sale_date
+ORDER BY product_name ASC, sale_date ASC;
+```
+
+```
+SELECT TRIM(LOWER(product_name)) AS product_name, 
+       LEFT(sale_date, 7) AS sale_date,
+       COUNT(sale_id) AS total
+FROM   Sales
+GROUP  BY TRIM(LOWER(product_name)), LEFT(sale_date, 7)
+ORDER  BY product_name, sale_date ;
+```
+
+without leading or trailing white spaces: TRIM()
+
