@@ -300,7 +300,7 @@ Notes:
 4. More practice !!
 
 
-## 24.[Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
+## 23.[Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
 ```
 SELECT product_id, year AS first_year, quantity, price
 FROM Sales
@@ -312,7 +312,7 @@ GROUP BY product_id) ;
 Notes:
 1. Boundle product_id, min(year)
 
-## 23.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
+## 24.[Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/)
 ```
 SELECT customer_number
 FROM(
