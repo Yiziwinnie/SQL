@@ -286,6 +286,15 @@ SELECT DISTINCT sender_id, send_to_id
 FROM friend_request
 GROUP BY sender_id, send_to_id) AS B),0),2) AS accept_rate; 
 ```
+
+```
+SELECT Max(Salary) AS SecondHighestSalary
+FROM Employee
+WHERE Salary NOT IN 
+(SELECT Max(Salary)
+FROM Employee);
+```
+
 Notes:
 1. round & IFNULL: round **(** IFNULL([],0),2 **)** AS accept_rate
 2. DISTINCT!! 
