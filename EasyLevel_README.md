@@ -99,6 +99,17 @@ CASE
     END AS triangle
 FROM triangle;
 ```
+
+```
+SELECT *,
+CASE 
+    WHEN x+y>z AND x+z>y AND y+z>x 
+    THEN 'Yes'
+    ELSE 'No'
+    END AS triangle
+FROM triangle;
+```
+
 Notes:
 1. Create a new column with conditions using CASE...WHEN (...THEN..)...ELSE() END AS **[Column Name]**
 2. Don't forget the , before CASE
