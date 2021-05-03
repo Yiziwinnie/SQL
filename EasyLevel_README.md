@@ -301,6 +301,7 @@ Notes:
 
 
 ## 23.[Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii/)
+#### Solution 1
 ```
 SELECT product_id, year AS first_year, quantity, price
 FROM Sales
@@ -308,6 +309,15 @@ WHERE (product_id, year) IN (
 SELECT product_id, MIN(year) as year
 FROM Sales
 GROUP BY product_id) ;
+```
+#### Solution 2
+```
+SELECT product_id, year AS first_year, quantity, price
+FROM(
+    SELECT product_id, year, quantity, price,
+    rank()over(PARTITION BY product_id ORDER BY year ASC) AS rnk
+    FROM Sales) s
+WHERE rnk=1;
 ```
 Notes:
 1. Boundle product_id, min(year)
