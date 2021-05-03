@@ -284,18 +284,12 @@ Notes:
 ## 22.[Friend Requests I: Overall Acceptance Rate](https://leetcode.com/problems/friend-requests-i-overall-acceptance-rate/)
 #### My SQL Solution 
 ```
-SELECT ROUND(IFNULL (
-    (SELECT COUNT(*)
-FROM(
-SELECT DISTINCT requester_id, accepter_id
-    FROM request_accepted
-    GROUP BY requester_id, accepter_id) AS A)
-/
-(SELECT COUNT(*)
-FROM(
-SELECT DISTINCT sender_id, send_to_id 
-FROM friend_request
-GROUP BY sender_id, send_to_id) AS B),0),2) AS accept_rate; 
+SELECT ROUND(
+IFNULL(
+(SELECT COUNT(DISTINCT requester_id, accepter_id) FROM RequestAccepted) /
+(SELECT COUNT(DISTINCT sender_id, send_to_id) FROM FriendRequest )
+,0)
+,2) AS accept_rate
 ```
 
 
